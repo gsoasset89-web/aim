@@ -1,0 +1,10 @@
+{
+  "placeholderImages": [
+    {
+      "id": "landing-hero",
+      "description": "A modern warehouse with organized shelves and boxes, suggesting an efficient inventory system.",
+      "imageUrl": "https://picsum.photos/seed/aim/1200/800",
+      "imageHint": "warehouse inventory"
+    }
+  ]
+}

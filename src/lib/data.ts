@@ -1,0 +1,118 @@
+
+
+import type { InventoryItem } from './types';
+
+export const responsibilityCenterAcronyms: { [key: string]: string } = {
+  // City Offices
+  'City Accounting Office': 'CAO',
+  "City Administrator's Office": 'CADMO',
+  "City Assessor's Office": 'CASO',
+  'City Budget Office': 'CBO',
+  'City Building & Architecture Office': 'CBAO',
+  "City Engineer's Office": 'CEO',
+  'City Environment & Parks Management Office': 'CEPMO',
+  "City Mayor's Office - CDRRMO": 'CDRRMC',
+  "City Mayor's Office - Main": 'CMO',
+  "City Mayor's Office - MITD": 'MITD',
+  'City Social Welfare & Development Office': 'OCSWADO',
+  "City Treasurer's Office": 'CTO',
+  'City Veterinary and Agriculture Office': 'CVO',
+  'General Services Office': 'GSO',
+  'Health Services Office': 'HSO',
+  'Office of the City Human Resource': 'HRMO',
+  'City Legal Office': 'CLO',
+  'City Library': 'CLIB',
+  'Office of the City Planning & Development Officer': 'OCPD',
+  'Office of the Local Civil Registrar': 'LCR',
+  'Sangguniang Panlungsod': 'SP',
+  // National Offices
+  'Baguio City Police Office': 'BCPO',
+  'Bureau of Fire Prevention & Safety': 'BFPS',
+  'City Jail Management & Penology - Female Dorm': 'BJMP - Female',
+  'City Jail Management & Penology - Male Dorm': 'BJMP - Male',
+  'Office of the City Auditor': 'COA',
+  "City Prosecutor's Office": 'CPO',
+  'Department of Education': 'Dep-Ed',
+  'Municipal Trial Court In Cities': 'MTCC',
+  "Public Attorney's Office": 'PAO',
+  'Parole & Probation Administration': 'PPA',
+  'Regional Trial Court': 'RTC',
+  'Registry of Deeds': 'ROD',
+};
+
+
+export const responsibilityCenters = [
+  // City Offices
+  { code: '1081', name: 'City Accounting Office', category: 'City Offices' },
+  { code: '1031', name: "City Administrator's Office", category: 'City Offices' },
+  { code: '1101', name: "City Assessor's Office", category: 'City Offices' },
+  { code: '1071', name: 'City Budget Office', category: 'City Offices' },
+  { code: '1011A', name: 'City Building & Architecture Office', category: 'City Offices' },
+  { code: '8751', name: "City Engineer's Office", category: 'City Offices' },
+  { code: '8731', name: 'City Environment & Parks Management Office', category: 'City Offices' },
+  { code: '1061', name: 'General Services Office', category: 'City Offices' },
+  { code: '4411', name: 'Health Services Office', category: 'City Offices' },
+  { code: '1011B', name: 'Office of the City Human Resource', category: 'City Offices' },
+  { code: '1131', name: 'City Legal Office', category: 'City Offices' },
+  { code: '1122', name: 'City Library', category: 'City Offices' },
+  { code: '1011', name: "City Mayor's Office - CDRRMO", category: 'City Offices' },
+  { code: '1011', name: "City Mayor's Office - Main", category: 'City Offices' },
+  { code: '1011', name: "City Mayor's Office - MITD", category: 'City Offices' },
+  { code: '1041', name: 'Office of the City Planning & Development Officer', category: 'City Offices' },
+  { code: '1051', name: 'Office of the Local Civil Registrar', category: 'City Offices' },
+  { code: '1021', name: 'Sangguniang Panlungsod', category: 'City Offices' },
+  { code: '7611', name: 'City Social Welfare & Development Office', category: 'City Offices' },
+  { code: '1091', name: "City Treasurer's Office", category: 'City Offices' },
+  { code: '8721', name: 'City Veterinary and Agriculture Office', category: 'City Offices' },
+  // National Offices
+  { code: '1181', name: 'Baguio City Police Office', category: 'National Offices' },
+  { code: '1191', name: 'Bureau of Fire Prevention & Safety', category: 'National Offices' },
+  { code: '1171', name: 'City Jail Management & Penology - Female Dorm', category: 'National Offices' },
+  { code: '1171', name: 'City Jail Management & Penology - Male Dorm', category: 'National Offices' },
+  { code: '1111', name: 'Office of the City Auditor', category: 'National Offices' },
+  { code: '1141', name: "City Prosecutor's Office", category: 'National Offices' },
+  { code: '3311', name: 'Department of Education', category: 'National Offices' },
+  { code: '1158', name: 'Municipal Trial Court In Cities', category: 'National Offices' },
+  { code: '9999G', name: "Public Attorney's Office", category: 'National Offices' },
+  { code: '9999F', name: 'Parole & Probation Administration', category: 'National Offices' },
+  { code: '1151', name: 'Regional Trial Court', category: 'National Offices' },
+  { code: '1161', name: 'Registry of Deeds', category: 'National Offices' },
+];
+
+export const icsAccountCodes = [
+    { value: "1-04-05-010 (226)", label: "1-04-05-010 (226) SEMI- EXPENDABLE MACHINERY" },
+    { value: "1-04-05-020 (221)", label: "1-04-05-020 (221) SEMI- EXPENDABLE OFFICE EQUIPMENT" },
+    { value: "1-04-05-030 (223)", label: "1-04-05-030 (223) SEMI-EXPENDABLE INFORMATION & COMMUNICATION TECHNOLOGY EQUIPMENT" },
+    { value: "1-04-05-070 (229)", label: "1-04-05-070 (229) SEMI- EXPENDABLE COMUNICATION EQUIPMENT" },
+    { value: "1-04-05-080 (231)", label: "1-04-05-080 (231) SEMI- EXPENDABLE DISASTER RESPONSE & RESCUE EQUIPMENT" },
+    { value: "1-04-05-090 (234)", label: "1-04-05-090 (234) SEMI- EXPENDABLE MILITARY, POLICE & SECURITY EQUIPMENT" },
+    { value: "1-04-05-100 (233)", label: "1-04-05-100 (233) SEMI- EXPENDABLE MEDICAL EQUIPMENT" },
+    { value: "1-04-05-110 (221)", label: "1-04-05-110 (221) SEMI- EXPENDABLE PRINTING EQUIPMENT" },
+    { value: "1-04-05-120 (235)", label: "1-04-05-120 (235) SEMI- EXPENDABLE SPORTS EQUIPMENT" },
+    { value: "1-04-05-130 (236)", label: "1-04-05-130 (236) SEMI- EXPENDABLE TECHNICAL & SCIENTIFIC EQUIPMENT" },
+    { value: "1-04-05-140 (230)", label: "1-04-05-140 (230) SEMI- EXPENDABLE CONSTRUCTION & HEAVY EQUIPMENT" },
+    { value: "1-04-05-990 (240)", label: "1-04-05-990 (240) SEMI- EXPENDABLE OTHER MACHINERY & EQUIPMENT" },
+    { value: "1-04-06-010 (222)", label: "1-04-06-010 (222) SEMI-EXPENDABLE FURNITURE & FIXTURES" },
+    { value: "1-04-06-020 (224)", label: "1-04-06-020 (224) SEMI-EXPENDABLE BOOKS" },
+];
+
+export const parAccountCodes = [
+    { value: "1-07-05-020 (221)", label: "1-07-05-020 (221) OFFICE EQUIPMENT" },
+    { value: "1-07-05-120 (221)", label: "1-07-05-120 (221) PRINTING EQUIPMENT" },
+    { value: "1-07-07-010 (222)", label: "1-07-07-010 (222) FURNITURE & FIXTURES" },
+    { value: "1-07-05-030 (223)", label: "1-07-05-030 (223) INFORMATION & COMMUNICATION TECHNOLOGY EQUIPMENT" },
+    { value: "1-09-01-020 (223)", label: "1-09-01-020 (223) COMPUTER SOFTWARE" },
+    { value: "1-07-07-020 (224)", label: "1-07-07-020 (224) BOOKS" },
+    { value: "1-07-05-010 (226)", label: "1-07-05-010 (226) MACHINERY" },
+    { value: "1-07-05-070 (229)", label: "1-07-05-070 (229) COMUNICATION EQUIPMENT" },
+    { value: "1-07-05-080 (230)", label: "1-07-05-080 (230) CONSTRUCTION & HEAVY EQUIPMENT" },
+    { value: "1-07-05-090 (231)", label: "1-07-05-090 (231) DISASTER RESPONSE & RESCUE EQUIPMENT" },
+    { value: "1-07-05-110 (233)", label: "1-07-05-110 (233) MEDICAL EQUIPMENT" },
+    { value: "1-07-05-100 (234)", label: "1-07-05-100 (234) MILITARY, POLICE & SECURITY EQUIPMENT" },
+    { value: "1-07-05-130 (235)", label: "1-07-05-130 (235) SPORTS EQUIPMENT" },
+    { value: "1-07-05-140 (236)", label: "1-07-05-140 (236) TECHNICAL & SCIENTIFIC EQUIPMENT" },
+    { value: "1-07-05-990 (240)", label: "1-07-05-990 (240) OTHER MACHINERY & EQUIPMENT" },
+    { value: "1-07-06-010 (241)", label: "1-07-06-010 (241) MOTOR VEHICLES" },
+];
+
+    

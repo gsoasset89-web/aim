@@ -1,0 +1,45 @@
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Allow access to user profiles and notifications
+    match /users/{userId} {
+      allow read, write: if true;
+    }
+    match /users/{userId}/notifications/{notificationId} {
+      allow read, write: if true;
+    }
+
+    // Explicitly allow collection-level listing and document-level access for inventory
+    match /inventory {
+      allow read, list: if true;
+      allow write: if true;
+    }
+    match /inventory/{itemId} {
+      allow read, write: if true;
+      
+      // Allow access to subcollections like history
+      match /{allPaths=**} {
+        allow read, write: if true;
+      }
+    }
+
+    // Rules for utility records (fuel, water, electricity)
+    match /utilities/{recordId} {
+      allow read, write: if true;
+    }
+
+    // Rules for approval requests
+    match /approvals/{approvalId} {
+      allow read, write: if true;
+    }
+
+    // Default catch-all for development to prevent runtime blocks
+    match /{allPaths=**} {
+      allow read, write: if true;
+    }
+
+    // FORCE REDEPLOYMENT: 2025-06-23T18:00:00Z
+  }
+}

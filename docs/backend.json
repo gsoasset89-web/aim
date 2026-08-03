@@ -1,0 +1,120 @@
+
+{
+  "entities": {
+    "User": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "User",
+      "type": "object",
+      "description": "Represents a user of the application.",
+      "properties": {
+        "id": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "name": { "type": "string" },
+        "number": { "type": "string" },
+        "role": { "type": "string", "enum": ["Developer", "Admin", "Member", "View Only"] },
+        "verification": { "type": "string", "enum": ["Authorized", "Unauthorized"] },
+        "contributionScore": { "type": "number" },
+        "lastActivity": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "email", "name", "role", "verification"]
+    },
+    "InventoryItem": {
+      "title": "InventoryItem",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "type": { "type": "string", "enum": ["ics", "par"] },
+        "article": { "type": "string" }
+      },
+      "required": ["id", "userId", "type", "article"]
+    },
+    "UtilityRecord": {
+      "title": "UtilityRecord",
+      "type": "object",
+      "description": "Represents a consumption record for utilities.",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "userName": { "type": "string" },
+        "type": { "type": "string", "enum": ["fuel", "water", "electricity"] },
+        "date": { "type": "object", "description": "Firestore serverTimestamp" },
+        "amount": { "type": "number" },
+        "cost": { "type": "number" },
+        "office": { "type": "string" }
+      },
+      "required": ["userId", "type", "amount", "cost", "office"]
+    },
+    "Notification": {
+      "title": "Notification",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "message": { "type": "string" },
+        "isRead": { "type": "boolean" },
+        "timestamp": { "type": "object" }
+      },
+      "required": ["id", "userId", "message", "isRead", "timestamp"]
+    },
+    "ApprovalRequest": {
+      "title": "ApprovalRequest",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "itemId": { "type": "string" },
+        "itemArticle": { "type": "string" },
+        "action": { "type": "string" },
+        "status": { "type": "string" },
+        "timestamp": { "type": "object" }
+      }
+    }
+  },
+  "auth": {
+    "providers": ["password", "anonymous"]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/users/{userId}",
+        "definition": {
+          "entityName": "User",
+          "schema": { "$ref": "#/backend/entities/User" },
+          "description": "Stores user profiles."
+        }
+      },
+      {
+        "path": "/users/{userId}/notifications/{notificationId}",
+        "definition": {
+          "entityName": "Notification",
+          "schema": { "$ref": "#/backend/entities/Notification" },
+          "description": "Stores notifications."
+        }
+      },
+      {
+        "path": "/inventory/{itemId}",
+        "definition": {
+          "entityName": "InventoryItem",
+          "schema": { "$ref": "#/backend/entities/InventoryItem" },
+          "description": "Stores all inventory items."
+        }
+      },
+      {
+        "path": "/utilities/{recordId}",
+        "definition": {
+          "entityName": "UtilityRecord",
+          "schema": { "$ref": "#/backend/entities/UtilityRecord" },
+          "description": "Stores consumption records."
+        }
+      },
+      {
+        "path": "/approvals/{approvalId}",
+        "definition": {
+          "entityName": "ApprovalRequest",
+          "schema": { "$ref": "#/backend/entities/ApprovalRequest" },
+          "description": "Stores approval requests."
+        }
+      }
+    ]
+  }
+}

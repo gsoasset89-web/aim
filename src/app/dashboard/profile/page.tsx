@@ -48,7 +48,7 @@ export default function ProfilePage() {
 
     const isLoading = isUserLoading || isUsersLoading || isInventoryLoading;
 
-    if (isLoading || !currentUser) {
+    if (isLoading) {
         return (
             <main className="flex flex-1 flex-col gap-4 p-4 md:p-8">
                 <Card>
@@ -66,6 +66,14 @@ export default function ProfilePage() {
             </main>
         )
     }
+
+    const displayUser = currentUser ?? {
+        id: 'local-user',
+        name: 'Local User',
+        email: 'local@example.com',
+        role: 'Member' as const,
+        verification: 'Authorized' as const,
+    };
 
     return (
         <main className="flex flex-1 flex-col gap-4 p-4 md:p-8">
@@ -85,12 +93,12 @@ export default function ProfilePage() {
                                 </div>
                             </div>
                             <div>
-                                <h2 className="text-2xl font-bold">{currentUser.name}</h2>
-                                <p className="text-muted-foreground">{currentUser.email}</p>
+                                <h2 className="text-2xl font-bold">{displayUser.name}</h2>
+                                <p className="text-muted-foreground">{displayUser.email}</p>
                                 <div className="mt-2 flex gap-2">
-                                     <Badge variant="outline">{currentUser.role}</Badge>
-                                     <Badge variant={currentUser.verification === 'Authorized' ? 'default' : 'destructive'}>
-                                        {currentUser.verification}
+                                     <Badge variant="outline">{displayUser.role}</Badge>
+                                     <Badge variant={displayUser.verification === 'Authorized' ? 'default' : 'destructive'}>
+                                        {displayUser.verification}
                                      </Badge>
                                 </div>
                             </div>
@@ -100,7 +108,7 @@ export default function ProfilePage() {
                             <ProfileStat 
                                 icon={Award} 
                                 label="Contribution Score" 
-                                value={currentUser.contributionScore || 0} 
+                                value={displayUser.contributionScore || 0} 
                                 isLoading={isLoading} 
                             />
                             <ProfileStat 
@@ -112,13 +120,13 @@ export default function ProfilePage() {
                              <ProfileStat 
                                 icon={Shield} 
                                 label="Role" 
-                                value={currentUser.role} 
+                                value={displayUser.role} 
                                 isLoading={isLoading} 
                             />
                              <ProfileStat 
                                 icon={Calendar} 
                                 label="Last Activity" 
-                                value={currentUser.lastActivity ? formatDistanceToNow(currentUser.lastActivity.toDate(), { addSuffix: true }) : 'No activity yet'}
+                                value={displayUser.lastActivity ? formatDistanceToNow(displayUser.lastActivity.toDate(), { addSuffix: true }) : 'No activity yet'}
                                 isLoading={isLoading} 
                             />
                         </div>

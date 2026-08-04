@@ -95,7 +95,7 @@ export default function ItemDetailsPage() {
                 ) : error ? (
                     <div className="text-center text-destructive">
                         <p>Error loading item details.</p>
-                        <p className="text-sm">{error.message}</p>
+                        <p className="text-sm">{error instanceof Error ? error.message : 'Unknown error'}</p>
                     </div>
                 ) : !item ? (
                      <div className="text-center text-lg font-semibold text-gray-300 h-64 flex items-center justify-center">

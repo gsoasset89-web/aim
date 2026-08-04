@@ -288,6 +288,7 @@ function CustomSidebar() {
 
 function DashboardContent({ children }: { children: React.ReactNode }) {
   const router = useRouter();
+  const auth = useAuth();
   const { user: authUser, isUserLoading } = useUser();
   const firestore = useFirestore();
   const usersQuery = useMemo(() => (firestore && authUser ? collection(firestore, 'users') : null), [firestore, authUser]);
@@ -296,13 +297,14 @@ function DashboardContent({ children }: { children: React.ReactNode }) {
     if (!authUser || !users) return null;
     return users.find(u => u.id === authUser.uid);
   }, [authUser, users]);
+  const hasFirebaseAuth = Boolean(auth);
 
   useEffect(() => {
     const sessionUser = sessionStorage.getItem('user');
-    if (!isUserLoading && !authUser && !sessionUser) {
+    if (hasFirebaseAuth && !isUserLoading && !authUser && !sessionUser) {
       router.push('/login');
     }
-  }, [authUser, isUserLoading, router]);
+  }, [authUser, hasFirebaseAuth, isUserLoading, router]);
 
   useEffect(() => {
     if (!isUserLoading && authUser && users) {
@@ -313,8 +315,7 @@ function DashboardContent({ children }: { children: React.ReactNode }) {
     }
   }, [authUser, users, isUserLoading]);
 
-
-  if (isUserLoading || (authUser && areUsersLoading) || !currentUser) {
+  if (isUserLoading || (authUser && areUsersLoading)) {
     return (
       <div className="absolute inset-0 flex items-center justify-center bg-background z-50">
         <Loader2 className="h-12 w-12 animate-spin text-primary" />

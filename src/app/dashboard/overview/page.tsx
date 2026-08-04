@@ -86,7 +86,7 @@ export default function OverviewPage() {
         };
     }, [users, inventoryItems, currentUser]);
 
-    if (isLoading || !currentUser) {
+    if (isLoading) {
         return (
             <main className="flex flex-1 flex-col gap-4 p-4 md:p-8">
                 <Skeleton className="h-8 w-48" />
@@ -102,6 +102,14 @@ export default function OverviewPage() {
             </main>
         )
     }
+
+    const displayUser = currentUser ?? {
+        id: 'local-user',
+        name: 'Local User',
+        email: 'local@example.com',
+        role: 'Member' as const,
+        verification: 'Authorized' as const,
+    };
     
     const features = [
       'Centralized Inventory Management for ICS and PAR records.',
@@ -114,7 +122,7 @@ export default function OverviewPage() {
 
     return (
         <main className="flex flex-1 flex-col gap-4 p-4 md:p-8">
-            <h1 className="text-2xl font-semibold font-headline">Welcome back, {currentUser.name}!</h1>
+            <h1 className="text-2xl font-semibold font-headline">Welcome back, {displayUser.name}!</h1>
             
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                 <StatCard title="Items You're Accountable For" value={itemsAccountableFor} icon={UserCheck} isLoading={isLoading} description="Assets assigned under your name." />

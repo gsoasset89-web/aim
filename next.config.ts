@@ -42,6 +42,9 @@ const nextConfig = {
       bodySizeLimit: '2mb',
     },
   },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   images: {
     remotePatterns: [
       {

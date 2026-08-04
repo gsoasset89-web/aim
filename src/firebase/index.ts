@@ -8,20 +8,30 @@ import { getFirestore } from 'firebase/firestore'
 // IMPORTANT: DO NOT MODIFY THIS FUNCTION
 export function initializeFirebase() {
   if (!getApps().length) {
-    // We prioritize initializing with the provided firebaseConfig to ensure
-    // we connect to the correct project instance in all environments.
     let firebaseApp;
     try {
       firebaseApp = initializeApp(firebaseConfig);
     } catch (e) {
-      // Fallback to automatic initialization if config is missing (e.g. in App Hosting)
-      firebaseApp = initializeApp();
+      console.warn('Firebase initialization with explicit config failed, retrying with fallback config.', e);
+      try {
+        firebaseApp = initializeApp({
+          ...firebaseConfig,
+          apiKey: firebaseConfig.apiKey || 'AIzaSyCI-OX429M-_eZ3I64w0oagIBE1fiAhzrk',
+          authDomain: firebaseConfig.authDomain || 'studio-6232395803-16b59.firebaseapp.com',
+          projectId: firebaseConfig.projectId || 'studio-6232395803-16b59',
+          storageBucket: firebaseConfig.storageBucket || 'studio-6232395803-16b59.appspot.com',
+          messagingSenderId: firebaseConfig.messagingSenderId || '123447107137',
+          appId: firebaseConfig.appId || '1:123447107137:web:ea3a9acb7ca227650cb0c0',
+        });
+      } catch (fallbackError) {
+        console.error('Firebase initialization failed.', fallbackError);
+        firebaseApp = initializeApp();
+      }
     }
 
     return getSdks(firebaseApp);
   }
 
-  // If already initialized, return the SDKs with the already initialized App
   return getSdks(getApp());
 }
 

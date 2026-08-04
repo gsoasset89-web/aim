@@ -59,15 +59,19 @@ export default function LoginPage() {
 
         if (userDoc.exists()) {
           const userData = userDoc.data() as User;
-          if (userData.verification === 'Authorized') {
+          const isAllowedToSignIn = userData.verification === 'Authorized' || userData.verification === 'Unauthorized';
+
+          if (isAllowedToSignIn) {
             sessionStorage.setItem('user', JSON.stringify({ ...userData, id: user.uid }));
-            
+
             const audio = new Audio('/audio/login.mp3');
-            audio.play().catch(e => console.error("Error playing audio:", e));
+            audio.play().catch(e => console.error('Error playing audio:', e));
 
             toast({
               title: 'Login Successful',
-              description: `Welcome back, ${userData.name}!`,
+              description: userData.verification === 'Unauthorized'
+                ? `Welcome back, ${userData.name}! Your account is pending verification, but you can access the dashboard.`
+                : `Welcome back, ${userData.name}!`,
             });
             router.push('/dashboard/overview');
           } else {
@@ -75,7 +79,7 @@ export default function LoginPage() {
             toast({
               variant: 'destructive',
               title: 'Login Failed',
-              description: 'Account not verified. Contact an administrator for verification.',
+              description: 'Account could not be activated. Contact an administrator for assistance.',
             });
           }
         } else {
